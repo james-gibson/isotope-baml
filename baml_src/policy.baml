@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-only
 // The gate decision, as a pure function. Same inputs, same answer, no model.
 
 class Policy {

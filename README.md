@@ -109,14 +109,15 @@ Three rules carry over unchanged:
 
 ## Licence
 
-AGPL-3.0. Network use counts as distribution, so a service that vendors these
-sources must publish its own source. That is deliberate: the lattice is meant to
-be shared and inspectable, and the licence is what keeps a derived decision
+AGPL-3.0, matching the rest of the lab: `isotope`, `adhd`, `tuner`,
+`smoke-alarm` and `lezz.go` are all AGPL-3.0, as is the job dispatcher this was
+built against. Vendoring these sources carries the same licence, which is the
+intended arrangement rather than a concession — the lattice is meant to be
+shared and inspectable, and the licence is what keeps a derived decision
 auditable.
 
-Consumers that cannot accept that should call the packed binary across a process
-boundary rather than copy the source — and then carry the equivalence proof
-across that boundary instead.
+Source files carry `SPDX-License-Identifier: AGPL-3.0-only`, so the licence
+travels with a vendored copy even when the LICENSE file is left behind.
 
 ## Skills
 

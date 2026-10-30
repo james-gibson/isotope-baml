@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: AGPL-3.0-only
 // 42i as a pure function: no model, no provider, no network.
 // Port of the isotope package's weights and rung thresholds.
 
