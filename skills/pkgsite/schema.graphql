@@ -1,0 +1,28 @@
+# Subgraph: the authoritative plane. Answers "what is true about this module"
+# from pkg.go.dev's published API. Cost: one remote call per entity.
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.3",
+                    import: ["@key", "@shareable"])
+
+type Module @key(fields: "path") {
+  path: ID!
+  latest: String
+  versions: [Version!]!
+  # The expensive fields: authoritative, remote, and rate limited.
+  vulns: [Vulnerability!]!
+}
+
+type Version @shareable {
+  version: String!
+  published: String
+}
+
+type Vulnerability @shareable {
+  id: ID!
+  summary: String
+  severity: String
+  fixedIn: String
+}
+
+type Query {
+  module(path: ID!): Module
+}

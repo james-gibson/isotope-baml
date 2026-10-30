@@ -1,0 +1,11 @@
+{
+  "universe_id": "lab:skill-pkgsite:2026",
+  "charge": 1,
+  "nominal": "answers module, version and vulnerability facts from the published pkg.go.dev API",
+  "presupposes": ["lab:isotope-baml:2026"],
+  "tiers": {
+    "cheap": ["path"],
+    "expensive": ["versions", "vulns", "latest"]
+  },
+  "failure_class": "authoritative-unavailable"
+}

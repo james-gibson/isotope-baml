@@ -1,0 +1,21 @@
+# Subgraph: the cheap plane. Answers "where is this mentioned" from a local
+# index. Cost: near zero, and it never leaves the host.
+extend schema @link(url: "https://specs.apollo.dev/federation/v2.3",
+                    import: ["@key", "@shareable"])
+
+type Module @key(fields: "path") {
+  path: ID!
+  # The cheap fields: derived from what the index already holds.
+  documents: [Document!]!
+  mentions: Int
+}
+
+type Document @shareable {
+  uri: ID!
+  title: String!
+  score: Float
+}
+
+type Query {
+  search(query: String!, limit: Int = 10): [Module!]!
+}

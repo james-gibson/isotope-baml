@@ -1,0 +1,29 @@
+# Composition, not implementation. Both subgraphs define Module, keyed by path,
+# so the router can join them:
+#
+#   query { module(path: "golang.org/x/pkgsite") {
+#             path
+#             mentions          # cheap plane
+#             documents { uri } # cheap plane
+#             vulns { id }      # authoritative plane
+#           } }
+#
+# The router plans per field: cheap fields resolve locally, expensive fields
+# resolve only if the caller is authorised for that tier (see baml_src).
+type Module @key(fields: "path") {
+  path: ID!
+  latest: String
+  versions: [Version!]!
+  vulns: [Vulnerability!]!
+  documents: [Document!]!
+  mentions: Int
+}
+
+type Version { version: String! published: String }
+type Vulnerability { id: ID! summary: String severity: String fixedIn: String }
+type Document { uri: ID! title: String! score: Float }
+
+type Query {
+  module(path: ID!): Module
+  search(query: String!, limit: Int = 10): [Module!]!
+}

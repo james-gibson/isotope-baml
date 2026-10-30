@@ -1,0 +1,11 @@
+{
+  "universe_id": "lab:skill-search:2026",
+  "charge": 1,
+  "nominal": "answers where a module or symbol is mentioned, from a local index",
+  "presupposes": ["lab:isotope-baml:2026"],
+  "tiers": {
+    "cheap": ["path", "documents", "mentions"],
+    "expensive": []
+  },
+  "failure_class": "index-stale"
+}

@@ -18,6 +18,7 @@ port means the same thing.
 | `Distance(Deviations)` | accumulated distance from observed deviations |
 | `PositionOf(Deviations)` | distance, rung, rung name |
 | `Decide(Deviations, Policy)` | allow/refuse against a policy threshold |
+| `skills/` | two plane universes composed as a federated graph |
 
 `Deviations` is a typed class with optional counts, not a `map<string, int>`:
 BAML maps panic on a missing key, and an optional field reads better in a
@@ -106,6 +107,19 @@ Three rules carry over unchanged:
 - **Not a model judgement.** Nothing here calls an LLM. A model that emits its
   own distance is grading itself.
 
-## License
+## Licence
 
-No license file yet; add one before this is consumed outside the lab.
+AGPL-3.0. Network use counts as distribution, so a service that vendors these
+sources must publish its own source. That is deliberate: the lattice is meant to
+be shared and inspectable, and the licence is what keeps a derived decision
+auditable.
+
+Consumers that cannot accept that should call the packed binary across a process
+boundary rather than copy the source — and then carry the equivalence proof
+across that boundary instead.
+
+## Skills
+
+`skills/` holds two reference *plane universes* that vendor this lattice and
+compose as a federated graph: a cheap local search plane and an authoritative
+pkg.go.dev plane. See `skills/README.md`.
